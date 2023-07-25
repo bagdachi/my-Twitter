@@ -11,10 +11,12 @@
         <module name="api-Gateway" />
         <module name="user-service" />
         <module name="eureka-server" />
+        <module name="commons" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="api-Gateway" target="17" />
+      <module name="commons" target="17" />
       <module name="config-server" target="17" />
       <module name="eureka-server" target="17" />
       <module name="user-service" target="17" />
@@ -23,6 +25,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="api-Gateway" options="-parameters" />
+      <module name="commons" options="-parameters" />
       <module name="config-server" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
       <module name="user-service" options="-parameters" />
