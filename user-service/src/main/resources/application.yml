@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: "user-service"
+  sql:
+    init:
+      platform: postgres
+server:
+  port: 8082
+eureka:
+  instance:
+    hostname: "localhost"
+spring.jpa:
+  database: POSTGRESQL
+  hibernate.ddl-auto: create-drop
+  show-sql: true
+
+spring.datasource:
+  driverClassName: org.postgresql.Driver
+  url: jdbc:postgresql://localhost:5432/userService
+  username: postgres
+  password: 2000
