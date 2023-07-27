@@ -1,4 +1,4 @@
-package myTwitter.commons.dto.response;
+package myTwitter.commons.dto.response.tweet;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

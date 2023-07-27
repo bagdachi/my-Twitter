@@ -12,10 +12,10 @@ public class PathConstants {
     public static final String LOGIN = "/login";
     public static final String REGISTRATION_CHECK = "/registration/check";
     public static final String REGISTRATION_CODE = "/registration/code";
-    //public static final String REGISTRATION_ACTIVATE_CODE = "/registration/activate/{code}";
-    //public static final String REGISTRATION_CONFIRM = "/registration/confirm";
-    //public static final String FORGOT = "/forgot";
-    //public static final String FORGOT_EMAIL = FORGOT + "/email";
+    public static final String REGISTRATION_ACTIVATE_CODE = "/registration/activate/{code}";
+    public static final String REGISTRATION_CONFIRM = "/registration/confirm";
+    public static final String FORGOT = "/forgot";
+    public static final String FORGOT_EMAIL = FORGOT + "/email";
     public static final String RESET = "/reset";
     public static final String RESET_CODE = RESET + "/{code}";
     public static final String RESET_CURRENT = RESET + "/current";

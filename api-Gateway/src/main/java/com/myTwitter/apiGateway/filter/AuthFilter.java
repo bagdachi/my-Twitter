@@ -1,26 +1,37 @@
 package com.myTwitter.apiGateway.filter;
 
-import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import myTwitter.commons.dto.response.user.UserPrincipalResponse;
+import myTwitter.commons.security.JwtAuthenticationException;
+import myTwitter.commons.security.JwtProvider;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-@Component
-public class Authfilter extends AbstractGatewayFilterFactory<Authfilter.Config> {
+import static myTwitter.commons.constants.ErrorMessage.JWT_TOKEN_EXPIRED;
+import static myTwitter.commons.constants.FeignConstants.USER_SERVICE;
+import static myTwitter.commons.constants.PathConstants.*;
 
-    private final OAuth2ResourceServerProperties.Jwt jwt;
+@Component
+
+public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> {
+
+    private final JwtProvider jwtProvider;
     private final RestTemplate restTemplate;
 
-    public Authfilter(OAuth2ResourceServerProperties.Jwt jwt, RestTemplate rest){
-        super(Config.class);
-        this.jwt = jwt;
-        this.restTemplate = rest;
+    public AuthFilter(JwtProvider jwtProvider, RestTemplate restTemplate) {
+
+        this.jwtProvider = jwtProvider;
+        this.restTemplate = restTemplate;
     }
+
     @Override
     public GatewayFilter apply(Config config) {
         return (exchange, chain) -> {
-            String token = OAuth2ResourceServerProperties.Jwt.
+            String token = jwtProvider.resolveToken(exchange.getRequest());
             boolean isTokenValid = jwtProvider.validateToken(token);
 
             if (token != null && isTokenValid) {
@@ -44,6 +55,7 @@ public class Authfilter extends AbstractGatewayFilterFactory<Authfilter.Config> 
             }
         };
     }
+
     public static class Config {
     }
 }

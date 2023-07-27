@@ -19,6 +19,7 @@
       <module name="commons" target="17" />
       <module name="config-server" target="17" />
       <module name="eureka-server" target="17" />
+      <module name="myTwitter" target="1.5" />
       <module name="user-service" target="17" />
     </bytecodeTargetLevel>
   </component>
